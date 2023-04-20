@@ -1,55 +1,76 @@
+import Employee from "./Model/Employee.js";
+import fs from "fs";
+import addNewEmployee from "./addNewEmployee.js";
+import readLine from "readline";
+const rl = readLine.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+// define the start point of the program
 
-import Employee from "./Model/Employee.js"
-import readLineAsync, { isValidString }  from "./Utils/ReadUtils.js"
-
-
-// import {uuidv4} from "uuid"
-import { v4 as uuidv4 } from 'uuid';
-
-// define the start point of the program 
-
-const displayUserMenu =()=>{
-    console.log("========================Main Menu=========================")
-    console.log("1. To add an Employee")
-    console.log("2. View Employee By Id ")
-    console.log("3. View Employee By Email")
-    console.log("4. View Employee by name")
-    console.log("5. To add an Employee")
-    console.log("press ~ to exit")
+function displayUserMenu() {
+  console.log("========================Main Menu=========================");
+  console.log("1. To add an Employee");
+  console.log("2. View Employee By Id ");
+  console.log("3. View Employee By Email");
+  console.log("4. View Employee by name");
+  console.log("5. To add an Employee");
+  console.log("6. press to exit");
 }
 
-const main= async()=>
-    {
-        displayUserMenu();
-        let userOpt = await readLineAsync('Please enter the choice from above menu !')
-        // here we will perfrom the check that the value should pe proper and validated 
-        while(isValidString(userOpt)){
-            switch(userOpt){
-                case "1":
-                    {
-                        console.log("Addingf the employee")
-                        let employee = new Employee(
-                            uuidv4(),
-                            await readLineAsync('Please enter the name'),
-                            await readLineAsync('Please enter the age'),
-                            await readLineAsync('Please enter the email'),
-                            await readLineAsync('Please enter the contact ')  
-                            );
+const data = [];
+const fileContent = fs.readFileSync("employees.txt", "utf-8");
+const lines = fileContent.split("\n");
+for (let line of lines) {
+  if (line.trim() !== "") {
+    const [id, name, age, email, contact] = line.split("|");
+    const employee = new Employee(id, name, age, email, contact);
+    data.push(employee);
+  }
+}
 
-                        console.log("Enterd data is "+employee)    
-                        userOpt=false
-                        break;
-                    }
-                case "2":
-                        // here call the add logic 
-                        console.log("finding the employee by Id")
-                        userOpt=false
-                    break;
-                default :
-                    break;
-            }
-        }
+function main(data) {
+  displayUserMenu();
+  rl.question("Please enter the choice from above menu !", (choice) => {
+    switch (choice) {
+      case "1":
+        addNewEmployee(rl, displayUserMenu);
+        break;
+      case "2":
+        // Find the employee by ID
+        rl.question(
+          "Enter the ID of the employee you want to search for: ",
+          (id) => {
+              const employee = data.find((e) => e.displayId() === id);
+              if (employee) {
+                console.log(`Employee found return, Id: ${employee.id}`);
+              } else {
+                console.log("Employee not found.");
+              }
+              rl.close();
+          }
+        );
+        break;
+      case "3":
+        // here call the add logic
+        console.log("finding the employee by name");
+        break;
+      case "4":
+        // here call the add logic
+        console.log("finding the employee by email");
+        break;
+      case "5":
+        // here call the add logic
+        console.log("finding the employee by contact");
+        break;
+      case "6":
+        // here call the add logic
+        console.log("finding all employees");
+        break;
+      default:
+        break;
     }
-    // read thew input to proceed further 
+  });
+};
 
-main()
+main();
