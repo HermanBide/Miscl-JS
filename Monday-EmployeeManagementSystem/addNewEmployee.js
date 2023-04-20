@@ -1,9 +1,10 @@
 import Employee from "./Model/Employee.js";
-
+import fs from "fs"
+import { v4 as uuidv4 } from 'uuid';
 
 function isValidName(name) {
   // rules for a valid string along with validation return true or false based on that
-  const regEx = /^[a-zA-Z]+ [a-zA-Z]+$/;
+  const regEx = /^[a-zA-Z ]+$/;
   return regEx.test(name);
 }
 
@@ -23,37 +24,41 @@ function isValidEmail(email) {
 }
 
 function addNewEmployee(data, rl, displayUserMenu) {
+const dataObject = {};
 
-  function* IDGenerator() {
-    let id = 1;
-    while (true) {
-      yield id++;
-    }
-  }
+  // function* IDGenerator() {
+  //   let id = 1;
+  //   while (true) {
+  //     yield id++;
+  //   }
+  // }
   
-  const ids = IDGenerator();
-  const id = ids.next().value.toString();
+  const id = uuidv4();
+  dataObject.id = id;
 
   rl.question("Enter employee's name: ", (name) => {
+    dataObject.name = name 
+
     if (!isValidName(name)) {
-      console.log("Invalid name. Please use only valid strings.");
+      console.log("Invalid name string. Please use only valid strings.");
       rl.close()
       displayUserMenu();
       return;
     }
 
-    data.push(name)
-
     rl.question("Enter employee's age: ", (age) => {
+      dataObject.age = age
+
       if (!isValidAge(age)) {
         console.log("Invalid age. Please enter a number between 18 and 99.");
         rl.close();
         displayUserMenu();
         return;
       }
-      data.age
 
       rl.question("Enter  employee's contact: ", (contact) => {
+        dataObject.contact = contact
+
         if (!isValidContact(contact)) {
           console.log("Invalid contact. Please enter a number between");
           rl.close();
@@ -61,9 +66,8 @@ function addNewEmployee(data, rl, displayUserMenu) {
           return;
         }
 
-        data.contact
-
         rl.question("Enter  employee's email: ", (email) => {
+          dataObject.email = email
           if (!isValidEmail(email)) {
             console.log(
               "Invalid email. Please ensure it contains the '@' symbol and ends with '.com'."
@@ -73,13 +77,10 @@ function addNewEmployee(data, rl, displayUserMenu) {
             return;
           }
 
-          data.email
-
-          const newEmployee = new Employee(id, name, age, contact, email);
+          const newEmployee = new Employee(dataObject.id, dataObject.name, dataObject.age, dataObject.contact, dataObject.email);
           newEmployee.save()
-          data.push(newEmployee);
-          rl.close();
-
+          // const jsonData = JSON.stringify(dataObject);
+          // fs.writeFileSync('employees.txt', jsonData);
           console.log(`Employee with ID ${id} has been added.`);
           displayUserMenu();
         });

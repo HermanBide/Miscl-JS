@@ -6,6 +6,10 @@ const rl = readLine.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
+import viewEmployeeByEmail from "./viewEmployeeByEmail.js";
+import viewEmployeeById from "./viewEmployeeById.js";
+import viewEmployeeByName from "./viewEmployeeByName.js";
+import viewEmployees from "./viewEmployees.js";
 // define the start point of the program
 
 function displayUserMenu() {
@@ -18,38 +22,29 @@ function displayUserMenu() {
   console.log("6. press to exit");
 }
 
-const data = [];
-const fileContent = fs.readFileSync("employees.txt", "utf-8");
-const lines = fileContent.split("\n");
-for (let line of lines) {
-  if (line.trim() !== "") {
-    const [id, name, age, email, contact] = line.split("|");
-    const employee = new Employee(id, name, age, email, contact);
-    data.push(employee);
-  }
-}
+// const data = {
+//   id: "", name: "", age: "", contact: "", email: "",
+// };
+// const fileContent = fs.readFileSync("employees.txt", "utf-8");
+// const lines = fileContent.split("\n");
+// for (let line of lines) {
+//   if (line.trim() !== "") {
+//     const [id, name, age, email, contact] = line.split("|");
+//     const employee = new Employee(id, name, age, email, contact);
+//   }
+// }
 
 function main(data) {
+
   displayUserMenu();
   rl.question("Please enter the choice from above menu !", (choice) => {
     switch (choice) {
       case "1":
-        addNewEmployee(rl, displayUserMenu);
+        addNewEmployee(data, rl, displayUserMenu);
         break;
       case "2":
         // Find the employee by ID
-        rl.question(
-          "Enter the ID of the employee you want to search for: ",
-          (id) => {
-              const employee = data.find((e) => e.displayId() === id);
-              if (employee) {
-                console.log(`Employee found return, Id: ${employee.id}`);
-              } else {
-                console.log("Employee not found.");
-              }
-              rl.close();
-          }
-        );
+        viewEmployeeById(data, rl, displayUserMenu);
         break;
       case "3":
         // here call the add logic

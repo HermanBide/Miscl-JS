@@ -1,7 +1,7 @@
 import fs from "fs"
 export default class Employee {
   constructor(id, name, age, email, contact) {
-    this._id = parseInt(id);
+    this._id = id;
     this._name = name;
     this._age = parseInt(age);
     this._email = email;
@@ -9,7 +9,13 @@ export default class Employee {
   }
 
   save() {
-    const data =`Id:${this._id}|Name:${this._name}|Age:${this._age}|Contact:${this.contact}|Email:${this._email}\n`;
+    const data = JSON.stringify({
+      id: this._id,
+      name: this._name,
+      age: this._age,
+      contact: this._contact,
+      email: this._email
+    })
 
     fs.appendFile("employees.txt", data, "utf8", (err) => {
       if(err) {
@@ -38,7 +44,7 @@ export default class Employee {
 }
 
 // const data = []
-// const employee = new Employee(2, "James Doe", 20, "Jimmy@example.com", "925-412-7534");
+// const employee = new Employee(3, "Jimmy jam", 20, "Jhenccey@example.com", "925-333-7534");
 // employee.save()
 // data.push(employee)
 // console.log(data)
