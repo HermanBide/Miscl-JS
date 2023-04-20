@@ -1,5 +1,3 @@
-import Employee from "./Model/Employee.js";
-import fs from "fs";
 import addNewEmployee from "./addNewEmployee.js";
 import readLine from "readline";
 
@@ -11,7 +9,7 @@ import viewEmployeeByEmail from "./viewEmployeeByEmail.js";
 import viewEmployeeById from "./viewEmployeeById.js";
 import viewEmployeeByName from "./viewEmployeeByName.js";
 import viewEmployees from "./viewEmployees.js";
-// define the start point of the program
+
 
 function displayUserMenu() {
   console.log("========================Main Menu=========================");
@@ -23,18 +21,6 @@ function displayUserMenu() {
   console.log("6. press to exit");
 }
 
-// const data = {
-//   id: "", name: "", age: "", contact: "", email: "",
-// };
-// const fileContent = fs.readFileSync("employees.txt", "utf-8");
-// const lines = fileContent.split("\n");
-// for (let line of lines) {
-//   if (line.trim() !== "") {
-//     const [id, name, age, email, contact] = line.split("|");
-//     const employee = new Employee(id, name, age, email, contact);
-//   }
-// }
-
 function main() {
   displayUserMenu();
   rl.question("Please enter the choice from above menu !", (choice) => {
@@ -43,23 +29,18 @@ function main() {
         addNewEmployee(rl, displayUserMenu);
         break;
       case "2":
-        // Find the employee by ID
         viewEmployeeById(rl, displayUserMenu);
         break;
       case "3":
-        // here call the add logic
         viewEmployeeByName(rl, displayUserMenu);
         break;
       case "4":
-        // here call the add logic
         viewEmployeeByEmail(rl, displayUserMenu);
         break;
       case "5":
-        // here call the add logic
         viewEmployees(rl, displayUserMenu);
         break;
       case "6":
-        // here call the add logic
         console.log("exiting ....");
         rl.close();
         break;
@@ -73,5 +54,3 @@ function main() {
 
 main();
 
-//create a helper method that gets the data from employees.txt
-//read then parse and get array of emplyee object
