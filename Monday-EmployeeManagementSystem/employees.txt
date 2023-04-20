@@ -2,5 +2,5 @@
 {"id":2,"name":"joe joe","age":23,"contact":"joe@example.com","email":"413-345-2342"}
 {"id":3,"name":"bat man","age":32,"contact":"bat@example.com","email":"523-345-2342"}
 {"id":4,"name":"kiki wats","age":32,"contact":"wats@example.com","email":"345-643-3454"}
-{"id":5,"name":"kyle wats","age":20,"contact":"wats@example.com","email":"923-344-4453"}
+{"id":5,"name":"kyle wats","age":20,"contact":"kyle@example.com","email":"923-344-4453"}
 {"id":127,"name":"jon jill","age":27,"contact":"ji@example.com","email":"543-345-3453"}

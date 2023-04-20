@@ -36,41 +36,42 @@ function displayUserMenu() {
 // }
 
 function main() {
-
   displayUserMenu();
   rl.question("Please enter the choice from above menu !", (choice) => {
     switch (choice) {
       case "1":
-        addNewEmployee( rl, displayUserMenu);
+        addNewEmployee(rl, displayUserMenu);
         break;
       case "2":
         // Find the employee by ID
-        viewEmployeeById( rl, displayUserMenu);
+        viewEmployeeById(rl, displayUserMenu);
         break;
       case "3":
         // here call the add logic
-        viewEmployeeByName( rl, displayUserMenu);
+        viewEmployeeByName(rl, displayUserMenu);
         break;
       case "4":
         // here call the add logic
-        viewEmployeeByEmail( rl, displayUserMenu);
+        viewEmployeeByEmail(rl, displayUserMenu);
         break;
       case "5":
         // here call the add logic
-        viewEmployees( rl, displayUserMenu)
+        viewEmployees(rl, displayUserMenu);
         break;
       case "6":
         // here call the add logic
-        console.log(exit)
+        console.log("exiting ....");
+        rl.close();
         break;
       default:
+        console.log("Invalid choice. Please try again.");
+        displayUserMenu();
         break;
     }
   });
-};
+}
 
 main();
 
-
-//create a helper method that gets the data from employees.txt 
-//read then parse and get array of emplyee object 
+//create a helper method that gets the data from employees.txt
+//read then parse and get array of emplyee object
