@@ -1,12 +1,14 @@
+import getEmployeeData from './getEmployeeData.js';
 
-export default function viewEmployeeByName(data, rl, displayUserMenu) {
+export default function viewEmployeeByName( rl, displayUserMenu) {
+  const employees = getEmployeeData()
     rl.question("Enter employee name: ", (name) => {
-      const employeeName = data.filter((employee) => employee.displayName().toLowerCase() === name.toLowerCase()
+      const employee = employees.find((e) => e.name.toLowerCase() === name.toLowerCase()
       );
-      if (employeeName.length > 0) {
-        console.log(`Found Employee: ${employeeName}`)
+      if (employee) {
+        console.log(`Found Employee: ${employee.name}`)
         console.log(
-          `ID: ${employeeName.displayId()}, Full Name: ${employeeName.displayName()}, Age: ${employeeName.displayAge()}, Contact: ${employeeName.displayContact()}, Email: ${employeeName.displayEmail()}`
+          `ID: ${employee.id}, Full Name: ${employee.name}, Age: ${employee.age}, Contact: ${employee.contact}, Email: ${employee.email}`
         );
       } else {
         console.log("could not find Employee.");

@@ -1,7 +1,7 @@
 import fs from "fs"
 export default class Employee {
   constructor(id, name, age, email, contact) {
-    this._id = id;
+    this._id = parseInt(id);
     this._name = name;
     this._age = parseInt(age);
     this._email = email;

@@ -17,8 +17,8 @@ function displayUserMenu() {
   console.log("========================Main Menu=========================");
   console.log("1. To add an Employee");
   console.log("2. View Employee By Id ");
-  console.log("3. View Employee By Email");
-  console.log("4. View Employee by name");
+  console.log("3. View Employee by name");
+  console.log("4. View Employee By Email");
   console.log("5. view all employees");
   console.log("6. press to exit");
 }
@@ -49,18 +49,15 @@ function main() {
         break;
       case "3":
         // here call the add logic
-        console.log("finding the employee by name");
         viewEmployeeByName( rl, displayUserMenu);
         break;
       case "4":
         // here call the add logic
         viewEmployeeByEmail( rl, displayUserMenu);
-        console.log("finding the employee by email");
         break;
       case "5":
         // here call the add logic
         viewEmployees( rl, displayUserMenu)
-        console.log("finding all employees");
         break;
       case "6":
         // here call the add logic

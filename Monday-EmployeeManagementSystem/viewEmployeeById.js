@@ -1,21 +1,16 @@
-import readEmployeesFile from './readEmployeesFile.js';
+import getEmployeeData from './getEmployeeData.js';
 
 export default function viewEmployeeById(rl, displayUserMenu) {
-  readEmployeesFile((err, data) => {
-    if (err) {
-      console.log("Error reading employees file:", err);
-      return null
-    }
+  const employees = getEmployeeData()
     rl.question("Enter ID of employee: ", (id) => {
-      const employee = data.find((e) => e.id === id);
+      const employee = employees.find((e) => e.id === parseInt(id));
       if (employee) {
-        console.log(
-          `ID: ${employee.displayId()}, Full Name: ${employee.displayName()}, Age: ${employee.displayAge()}, Contact: ${employee.displayContact()}, Email: ${employee.displayEmail()}`
+        console.log( 
+          `ID: ${employee.id}, Full Name: ${employee.name}, Age: ${employee.age}, Contact: ${employee.contact}, Email: ${employee.email}`
         );
       } else {
         console.log("could not find Employee with this id.");
       }
       displayUserMenu();
     });
-  });
   }

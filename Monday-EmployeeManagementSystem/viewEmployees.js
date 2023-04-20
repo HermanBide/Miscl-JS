@@ -1,12 +1,15 @@
+import getEmployeeData from "./getEmployeeData.js";
+
 export default function viewAllEmployees(data, displayUserMenu) {
-    if (data.length === 0) {
+  const employees = getEmployeeData()
+    if (employees.length === 0) {
       console.log("No employees found.");
       return null;
     } else {
       console.log("\nAll Employees:");
-      data.forEach((employee) => {
+      employees.forEach((employee) => {
         console.log(
-          `ID: ${employee.displayId()}, Full Name: ${employee.displayName()}, Age: ${employee.displayAge()}, Contact: ${employee.displayContact()}, Email: ${employee.displayEmail()}`
+          `ID: ${employee.id}, Full Name: ${employee.name}, Age: ${employee.age}, Contact: ${employee.contact}, Email: ${employee.email}`
         );
       });
     }

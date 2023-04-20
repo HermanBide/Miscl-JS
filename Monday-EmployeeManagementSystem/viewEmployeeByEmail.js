@@ -1,11 +1,14 @@
-export default function viewEmployeeByEmail(data, rl, displayUserMenu) {
+import getEmployeeData from './getEmployeeData.js';
+
+export default function viewEmployeeByEmail( rl, displayUserMenu) {
+  const employees = getEmployeeData()
     rl.question("Enter employee email: ", (email) => {
-      const employee = data.filter(
-        (e) => e.getEmail().toLowerCase() === email.toLowerCase()
+      const employee = employees.find(
+        (e) => e.email.toLowerCase() === email.toLowerCase()
       );
       if (employee) {
         console.log(
-          `ID: ${employee.getId()}, Full Name: ${employee.getFullName()}, Age: ${employee.getAge()}, Contact: ${employee.getContact()}, Email: ${employee.getEmail()}`
+          `ID: ${employee.id}, Full Name: ${employee.name}, Age: ${employee.age}, Contact: ${employee.contact}, Email: ${employee.email}`
         );
       } else {
         console.log("Employee not found.");
