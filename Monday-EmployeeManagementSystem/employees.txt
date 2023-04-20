@@ -1,3 +1,4 @@
-Id:45|Name:joe jo|Age:33|Contact:undefined|Email:223-233-2333
-Id:4c7685b4-9178-4ac9-9e3a-3265839dd9d6|Name:jay mike|Age:23|Contact:undefined|Email:212-232-5664
+
 {"id":"e4677804-e7f3-440e-bce9-dd1569b2683a","name":"he hell","age":33,"contact":"he@example.com","email":"233-345-2342"}
+{"id":"e4677804-e7f3-440e-bce9-dd1569b268ba","name":"joe joe","age":23,"contact":"joe@example.com","email":"413-345-2342"}
+{"id":"e4677804-e7f3-440e-bce9-dd1569b2684a","name":"bat man","age":32,"contact":"bat@example.com","email":"523-345-2342"}{"id":"8468b886-d06f-4c66-9925-35c3b666ad24","name":"kiki wats","age":32,"contact":"wats@example.com","email":"345-643-3454"}

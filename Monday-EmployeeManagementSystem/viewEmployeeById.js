@@ -1,7 +1,11 @@
-import fs from 'fs';
+import readEmployeesFile from './readEmployeesFile.js';
 
-export default function viewEmployeeById(data, rl, displayUserMenu) {
-    fs.readFile("employees.txt",)
+export default function viewEmployeeById(rl, displayUserMenu) {
+  readEmployeesFile((err, data) => {
+    if (err) {
+      console.log("Error reading employees file:", err);
+      return null
+    }
     rl.question("Enter ID of employee: ", (id) => {
       const employee = data.find((e) => e.id === id);
       if (employee) {
@@ -13,4 +17,5 @@ export default function viewEmployeeById(data, rl, displayUserMenu) {
       }
       displayUserMenu();
     });
+  });
   }

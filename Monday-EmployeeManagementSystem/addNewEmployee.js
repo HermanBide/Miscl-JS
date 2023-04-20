@@ -23,7 +23,7 @@ function isValidEmail(email) {
   return regex.test(email);
 }
 
-function addNewEmployee(data, rl, displayUserMenu) {
+function addNewEmployee( rl, displayUserMenu) {
 const dataObject = {};
 
   // function* IDGenerator() {
