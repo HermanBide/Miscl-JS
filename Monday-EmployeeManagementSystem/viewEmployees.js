@@ -1,6 +1,6 @@
 import getEmployeeData from "./getEmployeeData.js";
 
-export default function viewAllEmployees(data, displayUserMenu) {
+export default function viewAllEmployees(displayUserMenu) {
   const employees = getEmployeeData()
     if (employees.length === 0) {
       console.log("No employees found.");

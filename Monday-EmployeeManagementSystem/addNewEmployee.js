@@ -3,7 +3,6 @@ import fs from "fs"
 import { v4 as uuidv4 } from 'uuid';
 
 function isValidName(name) {
-  // rules for a valid string along with validation return true or false based on that
   const regEx = /^[a-zA-Z ]+$/;
   return regEx.test(name);
 }
@@ -24,14 +23,8 @@ function isValidEmail(email) {
 }
 
 function addNewEmployee( rl, displayUserMenu) {
+// data Object to store input data  
 const dataObject = {};
-
-  // function* IDGenerator() {
-  //   let id = 1;
-  //   while (true) {
-  //     yield id++;
-  //   }
-  // }
   
   const id = uuidv4();
   dataObject.id = id;
@@ -58,7 +51,6 @@ const dataObject = {};
 
       rl.question("Enter  employee's contact: ", (contact) => {
         dataObject.contact = contact
-
         if (!isValidContact(contact)) {
           console.log("Invalid contact. Please enter a number between");
           rl.close();
@@ -78,7 +70,7 @@ const dataObject = {};
           }
 
           const newEmployee = new Employee(dataObject.id, dataObject.name, dataObject.age, dataObject.contact, dataObject.email);
-          newEmployee.save()
+          newEmployee.save() //save method from class to save employee in txt.file
           // const jsonData = JSON.stringify(dataObject);
           // fs.writeFileSync('employees.txt', jsonData);
           console.log(`Employee with ID ${id} has been added.`);
@@ -91,4 +83,3 @@ const dataObject = {};
 
 export default addNewEmployee;
 
-// module.export = {addNewEmployee};
